@@ -1,0 +1,38 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import 'app.dart';
+
+abstract class MainApp extends BaseApp {
+  MainApp({
+    Key? key,
+  }) : super(key: key) {
+    registerRoutes();
+    registerDependencies();
+  }
+
+  List<MicroApp> get microApps;
+  Map<String, WidgetBuilderArgs> get baseRoutes;
+
+  FutureOr<void> registerAppDependencies();
+
+  void registerRoutes() {
+    if (baseRoutes.isNotEmpty) routes.addAll(baseRoutes);
+    if (microApps.isNotEmpty) {
+      for (final microapp in microApps) {
+        routes.addAll(microapp.routes);
+      }
+    }
+  }
+
+  @override
+  void registerDependencies() {
+    registerAppDependencies();
+    if (microApps.isNotEmpty) {
+      for (final MicroApp microapp in microApps) {
+        microapp.registerDependencies();
+      }
+    }
+  }
+}
