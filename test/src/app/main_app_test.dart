@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:artisan/artisan.dart';
 
+import '../../mocks.dart';
 import '../../utils.dart';
 import 'micro_app_test.dart';
 
@@ -31,6 +32,9 @@ class MainAppTest extends MainApp {
       home: Scaffold(),
     );
   }
+
+  @override
+  ArtisanManager get artisan => ArtisanManagerMock();
 }
 
 void main() {

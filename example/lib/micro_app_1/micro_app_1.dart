@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:artisan/artisan.dart';
-import 'package:example/core/utils.dart';
 import 'package:flutter/material.dart';
 
 class MicroApp1 extends MicroApp {
@@ -27,7 +26,9 @@ class MicroApp1 extends MicroApp {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Micro App 1'),
-                    Text(appInjector.get<int>().toString()),
+                    Text(artisan.get<int>().toString()),
+                    Text(artisan.get<bool>().toString()),
+                    Text(context.artisan.get<bool>().toString()),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
@@ -45,5 +46,7 @@ class MicroApp1 extends MicroApp {
   String get microAppName => 'Micro 1';
 
   @override
-  FutureOr<void> registerDependencies() {}
+  FutureOr<void> registerDependencies() {
+    artisan.put<bool>(true);
+  }
 }

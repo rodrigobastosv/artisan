@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:artisan/artisan.dart';
-import 'package:example/core/utils.dart';
 import 'package:flutter/material.dart';
 
 class MicroApp2 extends MicroApp {
@@ -27,7 +26,13 @@ class MicroApp2 extends MicroApp {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Micro App 2'),
-                    Text(appInjector.get<String>()),
+                    Text(artisan.get<String>()),
+                    ElevatedButton(
+                      onPressed: () {
+                        artisan.log('qqqqq');
+                      },
+                      child: const Text('Log'),
+                    ),
                   ],
                 ),
               ),

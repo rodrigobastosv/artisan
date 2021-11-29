@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:artisan/artisan.dart';
 import 'package:flutter/material.dart';
 import 'package:artisan/src/route/route.dart';
 import 'package:artisan/src/utils/utils.dart';

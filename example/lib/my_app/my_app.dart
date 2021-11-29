@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:artisan/artisan.dart';
-import 'package:example/core/utils.dart';
+import 'package:example/core/my_app_manager.dart';
 import 'package:example/micro_app_1/micro_app_1.dart';
 import 'package:example/micro_app_2/micro_app_2.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,9 @@ class MyApp extends MainApp {
   }
 
   @override
+  ArtisanManager get artisan => MyAppManager();
+
+  @override
   Map<String, WidgetBuilderArgs> get baseRoutes => {};
 
   @override
@@ -30,7 +33,7 @@ class MyApp extends MainApp {
 
   @override
   FutureOr<void> registerAppDependencies() {
-    appInjector.put<int>(3);
-    appInjector.put<String>('aaa');
+    artisan.put<int>(3);
+    artisan.put<String>('aaa');
   }
 }

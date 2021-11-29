@@ -1,11 +1,9 @@
-import 'package:example/core/injector.dart';
+import 'package:artisan/artisan.dart';
 import 'package:get_it/get_it.dart';
 
+final injector = GetIt.I;
+
 class MyAppInjector implements Injector {
-  MyAppInjector(this.injector);
-
-  final GetIt injector;
-
   @override
   T get<T extends Object>() {
     return injector.get<T>();

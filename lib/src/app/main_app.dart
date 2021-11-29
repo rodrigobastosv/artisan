@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../artisan.dart';
 import 'app.dart';
 
 abstract class MainApp extends BaseApp {
@@ -12,6 +13,8 @@ abstract class MainApp extends BaseApp {
     registerDependencies();
   }
 
+  ArtisanManager get artisan;
+
   List<MicroApp> get microApps;
   Map<String, WidgetBuilderArgs> get baseRoutes;
 
@@ -21,6 +24,7 @@ abstract class MainApp extends BaseApp {
     if (baseRoutes.isNotEmpty) routes.addAll(baseRoutes);
     if (microApps.isNotEmpty) {
       for (final microapp in microApps) {
+        microapp.setArtisan(artisan);
         routes.addAll(microapp.routes);
       }
     }
@@ -30,7 +34,8 @@ abstract class MainApp extends BaseApp {
   void registerDependencies() {
     registerAppDependencies();
     if (microApps.isNotEmpty) {
-      for (final MicroApp microapp in microApps) {
+      for (final microapp in microApps) {
+        microapp.setArtisan(artisan);
         microapp.registerDependencies();
       }
     }
